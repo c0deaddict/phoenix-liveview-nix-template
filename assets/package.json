@@ -1,0 +1,26 @@
+{
+  "name": "demo-assets",
+  "version": "1.0.0",
+  "main": "js/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run build:js && npm run build:css",
+    "build:js": "node build.js --deploy",
+    "watch:js": "node build.js --watch",
+    "build:css": "npx tailwindcss -c ./tailwind.config.js -i css/app.css -o ../priv/static/assets/app.css --minify",
+    "watch:css": "npx tailwindcss -c ./tailwind.config.js -i css/app.css -o ../priv/static/assets/app.css --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.8",
+    "esbuild": "^0.23.1",
+    "tailwindcss": "^3.4.10"
+  },
+  "dependencies": {
+    "phoenix": "file:../deps/phoenix",
+    "phoenix_html": "file:../deps/phoenix_html",
+    "phoenix_live_view": "file:../deps/phoenix_live_view"
+  }
+}

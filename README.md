@@ -10,6 +10,13 @@ mix archive.install hex phx_new
 mix phx.new demo --live --database postgres
 ```
 
+## Build and run the server
+
+```bash
+nix build .#
+PHX_SERVER=true PORT=4000 SECRET_KEY_BASE=$(pwgen -s1 64) DATABASE_URL=ecto://postgres:postgres@localhost:5433/demo_dev RELEASE_COOKIE=xyz result/bin/demo start
+```
+
 # Demo
 
 To start your Phoenix server:

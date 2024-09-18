@@ -26,8 +26,8 @@ config :demo, DemoWeb.Endpoint,
   debug_errors: true,
   secret_key_base: "kC9KDdU9ZPwNmHcsRZyX5HCc9vUacVCiUJ/4tkxlo97Y8Qp4WFYzT7D0eYfNejss",
   watchers: [
-    esbuild: {Esbuild, :install_and_run, [:demo, ~w(--sourcemap=inline --watch)]},
-    tailwind: {Tailwind, :install_and_run, [:demo, ~w(--watch)]}
+    npm: ["run", "watch:js", cd: Path.expand("../assets", __DIR__)],
+    npm: ["run", "watch:css", cd: Path.expand("../assets", __DIR__)]
   ]
 
 # ## SSL Support
