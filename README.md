@@ -1,3 +1,15 @@
+# Phoenix LiveView template with Nix support
+
+This is a [Phoenix](https://www.phoenixframework.org/) [LiveView](https://hexdocs.pm/phoenix_live_view/welcome.html) template with Nix support.
+
+## Initial generated template (first commit)
+
+```bash
+mix local.hex
+mix archive.install hex phx_new
+mix phx.new demo --live --database postgres
+```
+
 # Demo
 
 To start your Phoenix server:
