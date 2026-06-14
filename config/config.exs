@@ -22,6 +22,11 @@ config :demo, DemoWeb.Endpoint,
   pubsub_server: Demo.PubSub,
   live_view: [signing_salt: "Vi6SSLrB"]
 
+# Configure LiveView
+config :phoenix_live_view,
+  # the attribute set on all root tags. Used for Phoenix.LiveView.ColocatedCSS.
+  root_tag_attribute: "phx-r"
+
 # Configures the mailer
 #
 # By default it uses the "Local" adapter which stores the emails

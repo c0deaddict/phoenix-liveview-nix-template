@@ -6,7 +6,6 @@ config :demo, Demo.Repo,
   password: "postgres",
   hostname: "localhost",
   database: "demo_dev",
-  port: 5433,
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -53,13 +52,18 @@ config :demo, DemoWeb.Endpoint,
 # configured to run both http and https servers on
 # different ports.
 
-# Watch static and templates for browser reloading.
+# Reload browser tabs when matching files change.
 config :demo, DemoWeb.Endpoint,
   live_reload: [
+    web_console_logger: true,
     patterns: [
-      ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
-      ~r"priv/gettext/.*(po)$",
-      ~r"lib/demo_web/(controllers|live|components)/.*(ex|heex)$"
+      # Static assets, except user uploads
+      ~r"priv/static/(?!uploads/).*\.(js|css|png|jpeg|jpg|gif|svg)$",
+      # Gettext translations
+      ~r"priv/gettext/.*\.po$",
+      # Router, Controllers, LiveViews and LiveComponents
+      ~r"lib/demo_web/router\.ex$",
+      ~r"lib/demo_web/(controllers|live|components)/.*\.(ex|heex)$"
     ]
   ]
 
@@ -77,8 +81,10 @@ config :phoenix, :stacktrace_depth, 20
 config :phoenix, :plug_init_mode, :runtime
 
 config :phoenix_live_view,
-  # Include HEEx debug annotations as HTML comments in rendered markup
+  # Include debug annotations and locations in rendered markup.
+  # Changing this configuration will require mix clean and a full recompile.
   debug_heex_annotations: true,
+  debug_attributes: true,
   # Enable helpful, but potentially expensive runtime checks
   enable_expensive_runtime_checks: true
 

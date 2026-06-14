@@ -38,12 +38,11 @@ defmodule DemoWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller,
-        formats: [:html, :json],
-        layouts: [html: DemoWeb.Layouts]
+      use Phoenix.Controller, formats: [:html, :json]
+
+      use Gettext, backend: DemoWeb.Gettext
 
       import Plug.Conn
-      import DemoWeb.Gettext
 
       unquote(verified_routes())
     end
@@ -51,8 +50,7 @@ defmodule DemoWeb do
 
   def live_view do
     quote do
-      use Phoenix.LiveView,
-        layout: {DemoWeb.Layouts, :app}
+      use Phoenix.LiveView
 
       unquote(html_helpers())
     end
@@ -81,14 +79,17 @@ defmodule DemoWeb do
 
   defp html_helpers do
     quote do
+      # Translation
+      use Gettext, backend: DemoWeb.Gettext
+
       # HTML escaping functionality
       import Phoenix.HTML
-      # Core UI components and translation
+      # Core UI components
       import DemoWeb.CoreComponents
-      import DemoWeb.Gettext
 
-      # Shortcut for generating JS commands
+      # Common modules used in templates
       alias Phoenix.LiveView.JS
+      alias DemoWeb.Layouts
 
       # Routes generation with the ~p sigil
       unquote(verified_routes())

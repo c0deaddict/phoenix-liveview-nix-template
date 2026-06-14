@@ -9,14 +9,14 @@ let
   mixFodDeps = beamPackages.fetchMixDeps {
     inherit src version;
     pname = "${pname}-deps";
-    hash = "sha256-EbimbwX5aXLa0E905FlHTOpV0848NJwOE9eCENTGiCg=";
+    hash = "sha256-kZr3oyZUoDriZEvcY8zUh5nBcIvbQESISXv7BJDI0Mc=";
   };
 
   assets = buildNpmPackage {
     pname = "${pname}-assets";
     inherit version;
     src = src + "/assets";
-    npmDepsHash = "sha256-cDT/AkbHx9WNKEYBpSXrBU2jYpJRIM5eehPI1ta0HDw=";
+    npmDepsHash = "sha256-mgdimFLmwMmePbO1O/+3pOXi3p9fVq+D3eRSa+6ZmOY=";
     postPatch = ''
       # deps are required for phoenix live javascript.
       ln -sf ${mixFodDeps} ../deps
@@ -33,8 +33,6 @@ in
 
 beamPackages.mixRelease rec {
   inherit pname version src;
-
-  MIX_ENV = "prod";
 
   inherit mixFodDeps;
 

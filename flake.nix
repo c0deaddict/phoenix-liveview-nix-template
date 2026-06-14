@@ -29,7 +29,6 @@
             nativeBuildInputs = [ pkgs.bashInteractive ];
             buildInputs = with pkgs; [
               inotify-tools
-              node2nix
             ];
           };
         });
